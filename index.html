@@ -1,0 +1,1626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BASTILLUXE — Maison de Création</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@500;600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* =========================================================
+   BASTILLUXE — Design System (per DESIGN.md: Atelier Monochrome)
+   ========================================================= */
+
+:root{
+  --surface:#f9f9f9;
+  --surface-dim:#dadada;
+  --surface-bright:#f9f9f9;
+  --surface-container-lowest:#ffffff;
+  --surface-container-low:#f3f3f4;
+  --surface-container:#eeeeee;
+  --surface-container-high:#e8e8e8;
+  --surface-container-highest:#e2e2e2;
+  --on-surface:#1a1c1c;
+  --on-surface-variant:#444748;
+  --inverse-surface:#2f3131;
+  --inverse-on-surface:#f0f1f1;
+  --outline:#747878;
+  --outline-variant:#c4c7c7;
+
+  --primary:#0a0a0a;
+  --on-primary:#ffffff;
+  --secondary:#5f5e5e;
+  --on-secondary:#ffffff;
+
+  --surface-subdued:#f4f4f4;
+  --border-light:#e5e5e5;
+  --border-heavy:#0a0a0a;
+  --muted-text:#999999;
+  --error:#ba1a1a;
+
+  --font-display:'Hanken Grotesk', sans-serif;
+  --font-body:'Inter', sans-serif;
+
+  --space-2xs: .25rem;
+  --space-xs: .5rem;
+  --space-sm: .75rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2.5rem;
+  --space-2xl: 4rem;
+  --space-3xl: 6rem;
+  --space-4xl: 10rem;
+
+  --margin-mobile: 1rem;
+  --margin-desktop: 3rem;
+  --container-max: 1728px;
+}
+
+*{box-sizing:border-box; margin:0; padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--surface);
+  color:var(--on-surface);
+  font-family:var(--font-body);
+  font-size:14px;
+  line-height:22px;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit; text-decoration:none;}
+button{font-family:inherit; cursor:pointer; background:none; border:none; color:inherit;}
+img{display:block; max-width:100%;}
+ul{list-style:none;}
+:focus-visible{outline:2px solid var(--primary); outline-offset:2px;}
+
+.eyebrow{
+  font-family:var(--font-display);
+  font-size:11px; font-weight:600; line-height:14px; letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--on-surface-variant);
+}
+.label-lg{font-family:var(--font-display); font-size:13px; font-weight:500; line-height:16px; letter-spacing:.1em; text-transform:uppercase;}
+.label-md{font-family:var(--font-display); font-size:11px; font-weight:500; line-height:14px; letter-spacing:.12em; text-transform:uppercase;}
+.label-sm{font-family:var(--font-display); font-size:10px; font-weight:600; line-height:12px; letter-spacing:.15em; text-transform:uppercase;}
+.headline-lg{font-family:var(--font-display); font-size:48px; font-weight:500; line-height:54px; letter-spacing:-.03em;}
+.headline-md{font-family:var(--font-display); font-size:28px; font-weight:500; line-height:34px; letter-spacing:-.02em;}
+.headline-sm{font-family:var(--font-display); font-size:20px; font-weight:500; line-height:26px; letter-spacing:-.01em;}
+.display{font-family:var(--font-display); font-size:72px; font-weight:600; line-height:76px; letter-spacing:-.04em;}
+.body-lg{font-family:var(--font-body); font-size:16px; line-height:26px; letter-spacing:-.01em; color:var(--on-surface-variant);}
+.body-sm{font-family:var(--font-body); font-size:12px; line-height:18px; letter-spacing:.01em; color:var(--on-surface-variant);}
+
+@media (max-width:768px){
+  .display{font-size:44px; line-height:48px; letter-spacing:-.03em;}
+  .headline-lg{font-size:32px; line-height:38px; letter-spacing:-.02em;}
+}
+
+.wrap{
+  max-width:var(--container-max);
+  margin:0 auto;
+  padding-left:var(--margin-mobile);
+  padding-right:var(--margin-mobile);
+}
+@media (min-width:768px){
+  .wrap{ padding-left:var(--margin-desktop); padding-right:var(--margin-desktop); }
+}
+
+/* ===================== ANNOUNCE + NAV ===================== */
+.announce{
+  background:var(--primary); color:var(--on-primary);
+  text-align:center; font-family:var(--font-display);
+  font-size:10px; letter-spacing:.14em; font-weight:600;
+  padding:8px var(--space-md);
+  text-transform:uppercase;
+}
+.nav{
+  position:sticky; top:0; z-index:50;
+  background:var(--surface-container-lowest);
+  border-bottom:1px solid var(--border-light);
+}
+.nav__inner{
+  max-width:var(--container-max); margin:0 auto;
+  padding:16px var(--margin-mobile);
+  display:flex; align-items:center; justify-content:space-between; gap:var(--space-lg);
+}
+@media (min-width:768px){ .nav__inner{padding:20px var(--margin-desktop);} }
+.nav__logo{
+  font-family:var(--font-display); font-weight:600; font-size:16px;
+  letter-spacing:.12em;
+}
+.nav__center{
+  display:none; gap:var(--space-xl);
+  font-family:var(--font-display); font-size:12px; font-weight:500; letter-spacing:.08em;
+}
+@media (min-width:1024px){ .nav__center{display:flex;} }
+.nav__center a{ position:relative; padding-bottom:2px; }
+.nav__center a.is-current{ border-bottom:1px solid var(--primary); }
+.nav__right{ display:flex; align-items:center; gap:var(--space-md); }
+.currency{ display:none; font-family:var(--font-display); font-size:11px; letter-spacing:.08em; color:var(--on-surface-variant); }
+@media (min-width:640px){ .currency{display:inline;} }
+.icon-btn{ display:flex; align-items:center; gap:6px; position:relative; color:var(--on-surface); }
+.icon-label{ display:none; font-family:var(--font-display); font-size:11px; letter-spacing:.08em; }
+@media (min-width:1024px){ .icon-label{display:inline;} }
+.icon-only{ width:32px; height:32px; align-items:center; justify-content:center; }
+.badge{
+  position:absolute; top:-6px; right:-8px;
+  background:var(--surface-container-highest); color:var(--on-surface);
+  font-family:var(--font-display); font-size:9px; font-weight:600;
+  width:16px; height:16px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+}
+.badge--dark{ background:var(--primary); color:var(--on-primary); }
+
+/* ===================== SEARCH OVERLAY ===================== */
+.search-overlay{
+  position:fixed; inset:0; z-index:100;
+  background:var(--surface-container-lowest);
+  transform:translateY(-100%);
+  transition:transform .25s ease;
+  overflow-y:auto;
+}
+.search-overlay.is-open{ transform:translateY(0); }
+.search-overlay__inner{
+  display:flex; align-items:center; gap:var(--space-md);
+  padding:24px var(--margin-mobile);
+  border-bottom:1px solid var(--border-light);
+  max-width:var(--container-max); margin:0 auto;
+}
+@media (min-width:768px){ .search-overlay__inner{padding:32px var(--margin-desktop);} }
+#searchInput{
+  flex:1; border:none; background:none; outline:none;
+  font-family:var(--font-display); font-size:24px; letter-spacing:-.01em;
+  color:var(--on-surface); text-transform:uppercase;
+}
+#searchInput::placeholder{ color:var(--outline); }
+.search-overlay__results{ max-width:var(--container-max); margin:0 auto; padding:0 var(--margin-mobile) var(--space-2xl); }
+@media (min-width:768px){ .search-overlay__results{padding:0 var(--margin-desktop) var(--space-2xl);} }
+.search-result-row{
+  display:flex; align-items:center; gap:var(--space-md);
+  padding:var(--space-md) 0; border-bottom:1px solid var(--border-light);
+}
+.search-result-row img{ width:56px; height:70px; object-fit:cover; }
+.search-empty{ padding:var(--space-2xl) 0; color:var(--outline); }
+
+/* ===================== BUTTONS ===================== */
+.btn{
+  height:48px; padding:0 32px;
+  display:inline-flex; align-items:center; justify-content:center; gap:8px;
+  font-family:var(--font-display); font-size:13px; font-weight:500; letter-spacing:.1em;
+  text-transform:uppercase; border-radius:0; white-space:nowrap;
+  transition:background .15s ease, color .15s ease, border-color .15s ease;
+}
+.btn--primary{ background:var(--primary); color:var(--on-primary); border:1px solid var(--primary); }
+.btn--primary:hover{ background:#222222; }
+.btn--outline{ background:transparent; color:var(--primary); border:1px solid var(--primary); }
+.btn--outline:hover{ background:var(--primary); color:var(--on-primary); }
+.btn--ghost{ border-bottom:1px solid transparent; padding:0; height:auto; }
+.btn--ghost:hover{ border-bottom-color:var(--primary); }
+.btn--full{ width:100%; }
+.btn:disabled{ opacity:.4; cursor:not-allowed; }
+
+/* ===================== CHIPS ===================== */
+.chip{
+  display:inline-flex; align-items:center; gap:6px;
+  height:24px; padding:0 8px;
+  font-family:var(--font-display); font-size:10px; font-weight:600; letter-spacing:.15em; text-transform:uppercase;
+  background:var(--surface-subdued); color:var(--primary);
+}
+.chip--highlight{ background:var(--primary); color:var(--on-primary); }
+.chip--remove{ cursor:pointer; }
+
+/* ===================== FORM CONTROLS ===================== */
+.field{
+  height:48px; width:100%; background:var(--surface-container-lowest);
+  border:1px solid var(--border-light); padding:0 var(--space-md);
+  font-family:var(--font-body); font-size:14px; color:var(--on-surface);
+  transition:border-color .15s ease;
+}
+.field:focus{ outline:none; border-color:var(--primary); }
+select.field{
+  appearance:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%230A0A0A' fill='none' stroke-width='1.4'/%3E%3C/svg%3E");
+  background-repeat:no-repeat; background-position:right 14px center;
+}
+
+/* ===================== PAGE / BREADCRUMB ===================== */
+.breadcrumb{ font-family:var(--font-display); font-size:10px; letter-spacing:.12em; color:var(--outline); text-transform:uppercase; }
+.breadcrumb a:hover{ color:var(--primary); }
+
+/* ===================== HOME: HERO ===================== */
+.hero{ position:relative; }
+.hero__media{ width:100%; height:56vw; max-height:640px; min-height:340px; object-fit:cover; }
+.hero__content{
+  position:absolute; left:var(--margin-mobile); bottom:var(--space-2xl); right:var(--margin-mobile);
+  color:#fff; max-width:560px;
+}
+@media (min-width:768px){ .hero__content{ left:var(--margin-desktop); bottom:var(--space-3xl); } }
+.hero__eyebrow{ color:#fff; opacity:.85; margin-bottom:var(--space-md); }
+.hero__title{ color:#fff; }
+.hero__sub{ color:#fff; opacity:.9; max-width:440px; margin:var(--space-md) 0 var(--space-xl); }
+.hero__ctas{ display:flex; flex-wrap:wrap; gap:var(--space-md); }
+.hero__ctas .btn--outline{ border-color:#fff; color:#fff; }
+.hero__ctas .btn--outline:hover{ background:#fff; color:var(--primary); }
+.hero__meta{
+  display:flex; justify-content:space-between; gap:var(--space-md);
+  padding:var(--space-md) var(--margin-mobile);
+  border-top:1px solid var(--border-light); border-bottom:1px solid var(--border-light);
+  flex-wrap:wrap;
+}
+@media (min-width:768px){ .hero__meta{padding:var(--space-md) var(--margin-desktop);} }
+
+/* ===================== SECTION HEADERS ===================== */
+.section{ padding:var(--space-3xl) 0; }
+.section--tight{ padding:var(--space-2xl) 0; }
+.section__head{
+  display:flex; align-items:flex-end; justify-content:space-between; gap:var(--space-lg);
+  margin-bottom:var(--space-xl); flex-wrap:wrap;
+}
+.section__head p{ max-width:420px; margin-top:var(--space-xs); }
+
+/* ===================== CURATED ARCHITECTURE (3-up) ===================== */
+.category-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--border-light); }
+@media (max-width:768px){ .category-grid{ grid-template-columns:1fr; } }
+.category-card{ background:var(--surface); position:relative; }
+.category-card img{ width:100%; height:520px; object-fit:cover; }
+@media (max-width:768px){ .category-card img{height:420px;} }
+.category-card__label{ padding:var(--space-md) 0; display:flex; justify-content:space-between; align-items:baseline; }
+
+/* ===================== PRODUCT GRID / CARDS ===================== */
+.product-grid{
+  display:grid; grid-template-columns:repeat(2,1fr); gap:var(--margin-mobile) var(--space-md);
+}
+@media (min-width:768px){ .product-grid{ grid-template-columns:repeat(4,1fr); gap:var(--space-lg) var(--space-lg); } }
+.product-card{ cursor:pointer; }
+.product-card__media{ position:relative; aspect-ratio:4/5; overflow:hidden; background:var(--surface-subdued); }
+.product-card__media img{ width:100%; height:100%; object-fit:cover; transition:opacity .2s linear; }
+.product-card__media img.img--alt{ position:absolute; inset:0; opacity:0; }
+.product-card:hover .img--alt{ opacity:1; }
+.product-card__tag{
+  position:absolute; top:0; left:0;
+  background:var(--primary); color:var(--on-primary);
+  padding:6px 10px;
+  font-family:var(--font-display); font-size:10px; font-weight:600; letter-spacing:.15em;
+}
+.product-card__info{ padding-top:var(--space-sm); border-top:1px solid var(--border-light); margin-top:var(--space-sm); }
+.product-card__row{ display:flex; justify-content:space-between; gap:var(--space-sm); }
+.product-card__name{ font-family:var(--font-display); font-size:11px; font-weight:500; letter-spacing:.12em; text-transform:uppercase; }
+.product-card__price{ font-family:var(--font-body); font-size:12px; }
+.product-card__material{ margin-top:2px; }
+.swatch-row{ display:flex; gap:6px; margin-top:8px; }
+.swatch{ width:14px; height:14px; border-radius:50%; border:1px solid var(--border-light); }
+
+/* ===================== FILTER BAR ===================== */
+.filter-bar{
+  display:flex; flex-wrap:wrap; gap:var(--space-sm);
+  padding:var(--space-md); background:var(--surface-container-low);
+  align-items:center; justify-content:space-between; margin-bottom:var(--space-lg);
+}
+.filter-bar__left{ display:flex; flex-wrap:wrap; gap:var(--space-sm); }
+.filter-bar__right{ display:flex; align-items:center; gap:var(--space-md); }
+.filter-select{ height:38px; padding:0 32px 0 12px; font-size:11px; }
+.active-filters{ display:flex; gap:8px; flex-wrap:wrap; margin-bottom:var(--space-lg); align-items:center; }
+.active-filters .label-sm{ color:var(--outline); letter-spacing:.1em; }
+.view-toggle{ display:flex; border:1px solid var(--border-light); }
+.view-toggle button{ width:32px; height:32px; display:flex; align-items:center; justify-content:center; }
+.view-toggle button.is-active{ background:var(--primary); color:var(--on-primary); }
+
+/* ===================== PAGE TITLE BLOCK (PLP) ===================== */
+.plp-head{ padding:var(--space-2xl) 0 var(--space-lg); }
+.plp-head__row{ display:flex; justify-content:space-between; align-items:flex-start; gap:var(--space-lg); flex-wrap:wrap; }
+.plp-head__count{ font-weight:400; color:var(--outline); font-size:20px; }
+
+/* ===================== LOAD MORE / PROGRESS ===================== */
+.load-more{ text-align:center; padding:var(--space-2xl) 0; }
+.progress-track{ height:2px; background:var(--border-light); max-width:280px; margin:0 auto var(--space-md); }
+.progress-fill{ height:2px; background:var(--primary); }
+.progress-label{ display:flex; justify-content:space-between; max-width:280px; margin:0 auto var(--space-md); font-size:10px; letter-spacing:.1em; color:var(--outline); }
+
+/* ===================== EDITORIAL / QUOTE ===================== */
+.editorial{ display:grid; grid-template-columns:1fr; }
+@media (min-width:900px){ .editorial{ grid-template-columns:1fr 1fr; } }
+.editorial__media{ position:relative; height:480px; }
+.editorial__media img{ width:100%; height:100%; object-fit:cover; }
+.editorial__tag{ position:absolute; bottom:var(--space-md); left:var(--space-md); background:var(--primary); color:#fff; padding:6px 10px; font-family:var(--font-display); font-size:10px; letter-spacing:.12em; }
+.editorial__body{ background:var(--primary); color:#fff; padding:var(--space-2xl) var(--margin-mobile); display:flex; flex-direction:column; justify-content:center; gap:var(--space-lg); }
+@media (min-width:768px){ .editorial__body{ padding:var(--space-3xl) var(--space-3xl); } }
+.editorial__quote{ font-family:var(--font-display); font-size:28px; font-weight:500; line-height:1.25; letter-spacing:-.02em; }
+.editorial__meta{ display:flex; gap:var(--space-2xl); border-top:1px solid rgba(255,255,255,.2); padding-top:var(--space-lg); flex-wrap:wrap; }
+.editorial__meta div{ color:rgba(255,255,255,.6); }
+.editorial__meta strong{ display:block; color:#fff; font-family:var(--font-display); font-size:12px; letter-spacing:.06em; margin-top:4px; font-weight:500; }
+.editorial__link{ color:#fff; border-bottom:1px solid rgba(255,255,255,.4); align-self:flex-start; }
+
+/* ===================== VALUE PROPS ===================== */
+.props{ display:grid; grid-template-columns:1fr; border-top:1px solid var(--border-light); }
+@media (min-width:768px){ .props{ grid-template-columns:repeat(3,1fr); } }
+.props > div{ padding:var(--space-xl) var(--margin-mobile); border-bottom:1px solid var(--border-light); }
+@media (min-width:768px){ .props > div{ padding:var(--space-xl); border-right:1px solid var(--border-light); border-bottom:none; } .props > div:last-child{ border-right:none; } }
+.props .num{ font-family:var(--font-display); font-size:20px; font-weight:500; margin-bottom:var(--space-md); display:block; }
+
+/* ===================== NEWSLETTER BAND ===================== */
+.newsletter-band{ background:var(--surface-container-low); padding:var(--space-2xl) var(--margin-mobile); }
+@media (min-width:768px){ .newsletter-band{padding:var(--space-3xl) var(--space-3xl);} }
+.newsletter-band__grid{ display:grid; grid-template-columns:1fr; gap:var(--space-lg); align-items:center; }
+@media (min-width:900px){ .newsletter-band__grid{ grid-template-columns:1.2fr 1fr; } }
+.newsletter-band__form{ display:flex; gap:0; max-width:420px; }
+.newsletter-band__form input{ flex:1; border-right:none; }
+.newsletter-band__form button{ height:48px; padding:0 20px; }
+
+/* ===================== FOOTER ===================== */
+.footer{ background:var(--surface); border-top:1px solid var(--border-light); margin-top:var(--space-3xl); }
+.footer__top{
+  max-width:var(--container-max); margin:0 auto;
+  padding:var(--space-2xl) var(--margin-mobile);
+  display:grid; grid-template-columns:1fr; gap:var(--space-xl);
+}
+@media (min-width:768px){ .footer__top{ padding:var(--space-2xl) var(--margin-desktop); grid-template-columns:1.6fr 1fr 1fr 1fr 1fr; } }
+.footer__signup p{ margin:var(--space-sm) 0 var(--space-md); max-width:280px; }
+.footer__form{ display:flex; max-width:340px; }
+.footer__form input{ flex:1; border-right:none; }
+.footer__form button{ height:48px; padding:0 20px; background:var(--primary); color:#fff; font-family:var(--font-display); font-size:12px; letter-spacing:.1em; }
+.footer__col{ display:flex; flex-direction:column; gap:var(--space-sm); }
+.footer__col a{ color:var(--on-surface-variant); font-size:13px; }
+.footer__col a:hover{ color:var(--primary); }
+.footer__bottom{
+  max-width:var(--container-max); margin:0 auto;
+  padding:var(--space-lg) var(--margin-mobile);
+  border-top:1px solid var(--border-light);
+  display:flex; flex-wrap:wrap; gap:var(--space-md); justify-content:space-between; align-items:center;
+}
+@media (min-width:768px){ .footer__bottom{padding:var(--space-lg) var(--margin-desktop);} }
+.footer__social{ display:flex; gap:var(--space-lg); font-family:var(--font-display); font-size:11px; letter-spacing:.1em; }
+.footer__pay, .footer__copy{ font-size:11px; color:var(--outline); letter-spacing:.06em; }
+
+/* ===================== TOAST ===================== */
+.toast{
+  position:fixed; left:50%; bottom:32px; transform:translateX(-50%) translateY(20px);
+  background:var(--primary); color:#fff; padding:14px 24px;
+  font-family:var(--font-display); font-size:12px; letter-spacing:.1em;
+  opacity:0; pointer-events:none; transition:opacity .2s ease, transform .2s ease;
+  z-index:200; text-transform:uppercase; white-space:nowrap;
+}
+.toast.is-visible{ opacity:1; transform:translateX(-50%) translateY(0); }
+
+/* ===================== PDP ===================== */
+.pdp{ display:grid; grid-template-columns:1fr; gap:var(--space-2xl); padding:var(--space-xl) 0 var(--space-3xl); }
+@media (min-width:1024px){ .pdp{ grid-template-columns:1.4fr 1fr; } }
+.pdp__gallery{ display:grid; gap:var(--space-md); grid-template-columns:1fr; }
+.pdp__gallery img{ width:100%; object-fit:cover; }
+.pdp__gallery .plate-main{ aspect-ratio:4/5; }
+.pdp__gallery .plate-pair{ display:grid; grid-template-columns:1fr 1fr; gap:var(--space-md); }
+.pdp__gallery .plate-pair img{ aspect-ratio:1/1; }
+.pdp__gallery .plate-full{ aspect-ratio:16/10; }
+.pdp__plate-caption{ font-family:var(--font-display); font-size:10px; letter-spacing:.1em; color:var(--outline); text-transform:uppercase; padding:6px 0; }
+
+.pdp__info{ position:sticky; top:96px; align-self:start; }
+.pdp__series{ display:flex; justify-content:space-between; margin-bottom:var(--space-md); }
+.pdp__title{ margin-bottom:var(--space-sm); }
+.pdp__price{ font-family:var(--font-body); font-size:18px; margin-bottom:var(--space-lg); }
+.pdp__price .taxes{ font-size:11px; color:var(--outline); margin-left:8px; }
+.pdp__installment{ display:flex; align-items:center; gap:8px; color:var(--on-surface-variant); font-size:12px; margin-bottom:var(--space-lg); padding-bottom:var(--space-lg); border-bottom:1px solid var(--border-light); }
+
+.option-block{ margin-bottom:var(--space-lg); }
+.option-block__head{ display:flex; justify-content:space-between; margin-bottom:var(--space-sm); }
+.color-row{ display:flex; gap:10px; }
+.color-swatch{ width:32px; height:32px; border:1px solid var(--border-light); cursor:pointer; position:relative; }
+.color-swatch.is-selected{ border:2px solid var(--primary); }
+.size-grid{ display:grid; grid-template-columns:repeat(5,1fr); gap:8px; }
+.size-box{
+  height:44px; min-width:44px; border:1px solid var(--border-light);
+  display:flex; align-items:center; justify-content:center;
+  font-family:var(--font-display); font-size:11px; letter-spacing:.1em; cursor:pointer; position:relative; background:#fff;
+}
+.size-box.is-selected{ background:var(--primary); color:#fff; border-color:var(--primary); }
+.size-box.is-oos{ background:var(--surface-subdued); color:var(--muted-text); cursor:not-allowed; }
+.size-box.is-oos::after{ content:''; position:absolute; inset:0; background:linear-gradient(to top right, transparent 47%, var(--border-light) 49%, var(--border-light) 51%, transparent 53%); }
+.model-note{ font-size:11px; color:var(--outline); margin-top:8px; }
+
+.pdp__actions{ display:flex; flex-direction:column; gap:var(--space-sm); margin:var(--space-lg) 0; }
+.pdp__perks{ display:grid; grid-template-columns:repeat(3,1fr); gap:var(--space-md); padding:var(--space-lg) 0; border-top:1px solid var(--border-light); text-align:center; }
+.pdp__perks div{ font-size:11px; color:var(--on-surface-variant); }
+.pdp__perks strong{ display:block; font-family:var(--font-display); font-size:11px; letter-spacing:.06em; margin-bottom:4px; color:var(--on-surface); }
+
+.accordion{ border-top:1px solid var(--border-light); }
+.accordion__item{ border-bottom:1px solid var(--border-light); }
+.accordion__head{ width:100%; display:flex; justify-content:space-between; align-items:center; padding:var(--space-md) 0; font-family:var(--font-display); font-size:11px; letter-spacing:.1em; text-transform:uppercase; }
+.accordion__body{ max-height:0; overflow:hidden; transition:max-height .2s ease; }
+.accordion__item.is-open .accordion__body{ max-height:220px; }
+.accordion__body p{ padding-bottom:var(--space-md); color:var(--on-surface-variant); font-size:13px; line-height:1.6; }
+.accordion__chevron{ transition:transform .2s ease; }
+.accordion__item.is-open .accordion__chevron{ transform:rotate(45deg); }
+
+/* ===================== COMPLETE THE LOOK ===================== */
+.ctl{ background:var(--surface-container-low); padding:var(--space-3xl) 0; }
+.ctl__head{ display:flex; justify-content:space-between; align-items:flex-end; gap:var(--space-lg); flex-wrap:wrap; margin-bottom:var(--space-xl); }
+.ctl__grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:var(--space-lg); }
+@media (max-width:768px){ .ctl__grid{ grid-template-columns:1fr; } }
+.ctl-card{ background:var(--surface-container-lowest); position:relative; }
+.ctl-card__media{ aspect-ratio:1/1; position:relative; overflow:hidden; }
+.ctl-card__media img{ width:100%; height:100%; object-fit:cover; }
+.ctl-card__add{
+  position:absolute; top:10px; right:10px; width:28px; height:28px;
+  background:#fff; border:1px solid var(--border-light);
+  display:flex; align-items:center; justify-content:center; font-size:16px;
+}
+.ctl-card__add.is-added{ background:var(--primary); color:#fff; }
+.ctl-card__body{ padding:var(--space-sm) var(--space-md) var(--space-md); }
+.ctl-card__tag{ color:var(--outline); margin-bottom:4px; }
+
+/* ===================== CART ===================== */
+.cart{ display:grid; grid-template-columns:1fr; gap:var(--space-2xl); padding:var(--space-xl) 0 var(--space-3xl); }
+@media (min-width:1024px){ .cart{ grid-template-columns:1.5fr 1fr; } }
+.cart__head{ display:flex; justify-content:space-between; align-items:baseline; margin-bottom:var(--space-lg); flex-wrap:wrap; gap:8px; }
+.milestone{ display:flex; justify-content:space-between; align-items:center; padding:var(--space-md); background:var(--surface-container-low); margin-bottom:var(--space-lg); font-size:12px; flex-wrap:wrap; gap:8px; }
+.milestone-track{ height:2px; background:var(--border-light); margin:var(--space-md) 0; }
+.milestone-fill{ height:2px; background:var(--primary); }
+
+.cart-line{ display:grid; grid-template-columns:96px 1fr auto; gap:var(--space-md); padding:var(--space-lg) 0; border-bottom:1px solid var(--border-light); }
+.cart-line img{ width:96px; height:120px; object-fit:cover; }
+.cart-line__meta{ display:flex; flex-direction:column; gap:4px; }
+.cart-line__attrs{ color:var(--on-surface-variant); }
+.cart-line__actions{ display:flex; align-items:center; gap:var(--space-md); margin-top:8px; }
+.qty-stepper{ display:flex; align-items:center; border:1px solid var(--border-light); }
+.qty-stepper button{ width:28px; height:28px; }
+.qty-stepper span{ width:28px; text-align:center; font-size:12px; }
+.cart-line__linkrow{ display:flex; gap:var(--space-md); }
+.cart-line__linkrow button{ font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:var(--on-surface-variant); }
+.cart-line__linkrow button:hover{ color:var(--primary); }
+.cart-line__price{ text-align:right; font-size:14px; white-space:nowrap; }
+
+.cart-empty{ text-align:center; padding:var(--space-4xl) var(--margin-mobile); }
+.cart-empty p{ margin:var(--space-md) 0 var(--space-xl); }
+
+.gift-row{ display:flex; align-items:center; justify-content:space-between; gap:var(--space-md); padding:var(--space-md) 0; }
+.switch{ width:36px; height:20px; background:var(--border-light); border-radius:999px; position:relative; flex-shrink:0; transition:background .15s ease; }
+.switch::after{ content:''; position:absolute; top:2px; left:2px; width:16px; height:16px; background:#fff; border-radius:50%; transition:left .15s ease; }
+.switch.is-on{ background:var(--primary); }
+.switch.is-on::after{ left:18px; }
+
+.summary{ background:var(--surface-container-low); padding:var(--space-lg); align-self:start; position:sticky; top:96px; }
+.summary__row{ display:flex; justify-content:space-between; padding:8px 0; font-size:13px; color:var(--on-surface-variant); }
+.summary__row--total{ color:var(--on-surface); font-size:16px; padding-top:var(--space-md); margin-top:8px; border-top:1px solid var(--border-light); }
+.summary__row--total small{ display:block; font-size:10px; color:var(--outline); font-weight:400; }
+.promo-row{ display:flex; gap:8px; margin:var(--space-md) 0; }
+.promo-row input{ flex:1; }
+.summary .btn--primary{ margin-top:var(--space-md); }
+.express-row{ display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-top:var(--space-sm); }
+.express-row button{ height:40px; border:1px solid var(--border-light); font-size:11px; letter-spacing:.06em; background:#fff; }
+.trust-list{ margin-top:var(--space-lg); display:flex; flex-direction:column; gap:10px; }
+.trust-list div{ display:flex; gap:10px; align-items:flex-start; font-size:11px; color:var(--on-surface-variant); }
+
+.complements{ margin-top:var(--space-2xl); }
+.complements-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:var(--space-md); }
+@media (max-width:640px){ .complements-grid{ grid-template-columns:1fr; } }
+
+/* ===================== LOOKBOOK (simple) ===================== */
+.lookbook-grid{ display:grid; grid-template-columns:1fr; gap:var(--space-md); }
+@media (min-width:768px){ .lookbook-grid{ grid-template-columns:repeat(2,1fr); } }
+.lookbook-grid img{ width:100%; height:640px; object-fit:cover; }
+
+/* ===================== UTIL ===================== */
+.mt-xs{margin-top:var(--space-xs);} .mt-sm{margin-top:var(--space-sm);} .mt-md{margin-top:var(--space-md);}
+.mt-lg{margin-top:var(--space-lg);} .mt-xl{margin-top:var(--space-xl);}
+.center{ text-align:center; }
+.hide-mobile{ display:none; } @media (min-width:768px){ .hide-mobile{ display:block; } }
+
+</style>
+</head>
+<body>
+
+<!-- ============ ANNOUNCEMENT BAR ============ -->
+<div class="announce">COMPLIMENTARY WORLDWIDE EXPRESS SHIPPING ON ORDERS OVER $250 — EDITION N° 04 NOW LIVE</div>
+
+<!-- ============ NAV ============ -->
+<header class="nav">
+  <div class="nav__inner">
+    <div class="nav__left">
+      <a href="#/" class="nav__logo">BASTILLUXE</a>
+    </div>
+    <nav class="nav__center">
+      <a href="#/shop?cat=men" data-nav>MEN</a>
+      <a href="#/shop?cat=women" data-nav>WOMEN</a>
+      <a href="#/shop?filter=new" data-nav class="is-active-cue">NEW ARRIVALS</a>
+      <a href="#/lookbook" data-nav>LOOKBOOK</a>
+      <a href="#/shop?filter=sale" data-nav>SALE</a>
+    </nav>
+    <div class="nav__right">
+      <button class="icon-btn" id="searchToggle" aria-label="Search">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.5"/><line x1="21" y1="21" x2="16.65" y2="16.65" stroke="currentColor" stroke-width="1.5"/></svg>
+        <span class="icon-label">SEARCH</span>
+      </button>
+      <span class="currency">USD $</span>
+      <button class="icon-btn icon-only" aria-label="Account">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6" stroke="currentColor" stroke-width="1.5"/></svg>
+      </button>
+      <button class="icon-btn icon-only" aria-label="Wishlist">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 20s-7-4.35-9.5-8.5C.7 8 2 4.5 5.5 4A5 5 0 0 1 12 7a5 5 0 0 1 6.5-3C22 4.5 23.3 8 21.5 11.5 19 15.65 12 20 12 20Z" stroke="currentColor" stroke-width="1.5"/></svg>
+        <span class="badge" id="wishBadge">0</span>
+      </button>
+      <button class="icon-btn icon-only" aria-label="Cart" data-nav-cart>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M6 8h12l-1 12H7L6 8Z" stroke="currentColor" stroke-width="1.5"/><path d="M9 8V6a3 3 0 0 1 6 0v2" stroke="currentColor" stroke-width="1.5"/></svg>
+        <span class="badge badge--dark" id="cartBadge">0</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ============ SEARCH OVERLAY ============ -->
+<div class="search-overlay" id="searchOverlay">
+  <div class="search-overlay__inner">
+    <input type="text" id="searchInput" placeholder="SEARCH THE ARCHIVE — TRY “OVERCOAT” OR “SILK”" autocomplete="off">
+    <button class="icon-btn icon-only" id="searchClose" aria-label="Close search">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><line x1="5" y1="5" x2="19" y2="19" stroke="currentColor" stroke-width="1.5"/><line x1="19" y1="5" x2="5" y2="19" stroke="currentColor" stroke-width="1.5"/></svg>
+    </button>
+  </div>
+  <div class="search-overlay__results" id="searchResults"></div>
+</div>
+
+<main id="app"></main>
+
+<!-- ============ TOAST ============ -->
+<div class="toast" id="toast"></div>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="footer__top">
+    <div class="footer__signup">
+      <div class="eyebrow">DISPATCH SUBSCRIPTION</div>
+      <p>Receive curated archival updates, private salon invitations, and seasonal portfolio releases.</p>
+      <form class="footer__form" id="newsletterForm">
+        <input type="email" placeholder="ENTER YOUR EMAIL" required>
+        <button type="submit">JOIN</button>
+      </form>
+    </div>
+    <div class="footer__col">
+      <div class="eyebrow">COLLECTIONS</div>
+      <a href="#/shop">Edition N° 04</a>
+      <a href="#/shop">Permanent Wardrobe</a>
+      <a href="#/shop?cat=outerwear">Tailored Outerwear</a>
+      <a href="#/shop?cat=leather">Archival Leather</a>
+    </div>
+    <div class="footer__col">
+      <div class="eyebrow">CLIENT SERVICES</div>
+      <a href="#">Concierge &amp; Styling</a>
+      <a href="#">Shipping &amp; Customs</a>
+      <a href="#">Returns &amp; Exchanges</a>
+      <a href="#">Garment Care</a>
+    </div>
+    <div class="footer__col">
+      <div class="eyebrow">THE MAISON</div>
+      <a href="#">Manifesto</a>
+      <a href="#">Bastilluxe &amp; Craft</a>
+      <a href="#">Sustainability</a>
+      <a href="#">Press &amp; Inquiries</a>
+    </div>
+    <div class="footer__col">
+      <div class="eyebrow">LEGAL</div>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+      <a href="#">Accessibility</a>
+      <a href="#">Cookie Settings</a>
+    </div>
+  </div>
+  <div class="footer__bottom">
+    <div class="footer__social">
+      <a href="#">INSTAGRAM</a>
+      <a href="#">YOUTUBE</a>
+      <a href="#">SPOTIFY</a>
+    </div>
+    <div class="footer__pay">VISA&nbsp;&nbsp;MC&nbsp;&nbsp;AMEX&nbsp;&nbsp;APPLE PAY</div>
+    <div class="footer__copy">© 2025 BASTILLUXE MAISON DE CRÉATION. ALL RIGHTS RESERVED.</div>
+  </div>
+</footer>
+
+<script>
+// =========================================================
+// BASTILLUXE — Catalog data (Edition N° 04 / Permanent Wardrobe)
+// Imagery: placeholder editorial photography, grayscale-toned
+// =========================================================
+
+function img(seed, w, h){
+  return `https://picsum.photos/seed/${seed}/${w}/${h}?grayscale`;
+}
+
+const PRODUCTS = [
+  {
+    id: "structured-trench-coat",
+    name: "Structured Trench Coat",
+    category: "women",
+    type: "Outerwear & Coats",
+    material: "Cotton Gabardine",
+    price: 750,
+    tag: "ICONIC",
+    colors: [
+      { name: "Noir Black", hex: "#0a0a0a" },
+      { name: "Chalk White", hex: "#f2f0ec" }
+    ],
+    sizes: ["XS","S","M","L","XL"],
+    oosSizes: ["XL"],
+    seriesOf: 240,
+    edition: "EDITION N° 04",
+    images: [img("trench1",900,1125), img("trench1b",600,600), img("trench1c",600,600), img("trench1d",1400,875)],
+    description: "A commanding silhouette engineered in heavyweight cotton gabardine, cut with a dropped shoulder and architectural belt closure. Structured to hold its line from studio to street.",
+    fit: "Relaxed volume through the body with a tailored shoulder. Model is 5'10\" (178cm) wearing size Small.",
+    care: "Dry clean only. Store on a broad-shouldered hanger to preserve the silhouette."
+  },
+  {
+    id: "pleated-wideleg-trouser",
+    name: "Pleated Wide-Leg Trouser",
+    category: "women",
+    type: "Tailored Trousers",
+    material: "Virgin Wool Blend",
+    price: 380,
+    tag: "NEW",
+    colors: [
+      { name: "Noir Black", hex: "#0a0a0a" }
+    ],
+    sizes: ["XS","S","M","L","XL"],
+    oosSizes: [],
+    seriesOf: 180,
+    edition: "EDITION N° 04",
+    images: [img("trouser1",900,1125), img("trouser1b",600,600), img("trouser1c",600,600), img("trouser1d",1400,875)],
+    description: "Deep pleats fall from a fluid, sculptural drape. Cut wide through the leg with a raised natural waist, finished with a hidden hook closure.",
+    fit: "True to size, high-rise fit. Model is 5'10\" (178cm) wearing size Small.",
+    care: "Dry clean only. Steam to release pleats."
+  },
+  {
+    id: "raw-silk-relaxed-blazer",
+    name: "Raw Silk Relaxed Blazer",
+    category: "women",
+    type: "Tailored Outerwear",
+    material: "Chalk Raw Silk",
+    price: 590,
+    tag: "BASTILLUXE ATELIER",
+    colors: [
+      { name: "Chalk White", hex: "#f2f0ec" },
+      { name: "Noir Black", hex: "#0a0a0a" }
+    ],
+    sizes: ["XS","S","M","L","XL"],
+    oosSizes: ["XS"],
+    seriesOf: 120,
+    edition: "ATELIER",
+    images: [img("blazer1",900,1125), img("blazer1b",600,600), img("blazer1c",600,600), img("blazer1d",1400,875)],
+    description: "An unstructured blazer in raw slubbed silk, cut with soft shoulders and a single fastening button. Designed to be worn open, layered over knitwear or alone.",
+    fit: "Relaxed fit through the shoulder and body. Model is 5'10\" (178cm) wearing size Small.",
+    care: "Dry clean only."
+  },
+  {
+    id: "heavy-ribbed-turtleneck",
+    name: "Heavy Ribbed Turtleneck",
+    category: "men",
+    type: "Minimalist Knitwear",
+    material: "Pure Cashmere 7-Gauge",
+    price: 340,
+    tag: "",
+    colors: [
+      { name: "Noir Black", hex: "#0a0a0a" },
+      { name: "Graphite", hex: "#3a3a3a" }
+    ],
+    sizes: ["S","M","L","XL"],
+    oosSizes: [],
+    seriesOf: 300,
+    edition: "PERMANENT WARDROBE",
+    images: [img("turtle1",900,1125), img("turtle1b",600,600), img("turtle1c",600,600), img("turtle1d",1400,875)],
+    description: "Heavy 7-gauge cashmere knit in a dense rib, engineered for structure rather than softness alone. A close, architectural neckline anchors the silhouette.",
+    fit: "Slim through the body. Model is 6'1\" (185cm) wearing size Medium.",
+    care: "Hand wash cold or dry clean. Dry flat."
+  },
+  {
+    id: "boxy-cropped-poplin-shirt",
+    name: "Boxy Cropped Poplin Shirt",
+    category: "women",
+    type: "Shirting",
+    material: "120s Egyptian Cotton",
+    price: 220,
+    tag: "BESTSELLER",
+    colors: [
+      { name: "Chalk White", hex: "#f2f0ec" },
+      { name: "Noir Black", hex: "#0a0a0a" }
+    ],
+    sizes: ["XS","S","M","L"],
+    oosSizes: [],
+    seriesOf: 400,
+    edition: "PERMANENT WARDROBE",
+    images: [img("poplin1",900,1125), img("poplin1b",600,600), img("poplin1c",600,600), img("poplin1d",1400,875)],
+    description: "A precision-cut poplin shirt with a cropped, boxy body and dropped shoulder seam. Finished with mother-of-pearl buttons and a point collar.",
+    fit: "Boxy, cropped fit. Model is 5'10\" (178cm) wearing size Small.",
+    care: "Machine wash cold. Iron on reverse."
+  },
+  {
+    id: "tailored-wool-overcoat",
+    name: "Tailored Wool Overcoat",
+    category: "men",
+    type: "Outerwear & Coats",
+    material: "Melton Wool 800gsm",
+    price: 890,
+    tag: "",
+    colors: [
+      { name: "Graphite", hex: "#3a3a3a" },
+      { name: "Noir Black", hex: "#0a0a0a" }
+    ],
+    sizes: ["S","M","L","XL"],
+    oosSizes: [],
+    seriesOf: 150,
+    edition: "EDITION N° 04",
+    images: [img("overcoat1",900,1125), img("overcoat1b",600,600), img("overcoat1c",600,600), img("overcoat1d",1400,875)],
+    description: "A single-breasted overcoat in dense 800gsm melton wool. Full-length, floor-skimming proportion with a raised collar and horn buttons.",
+    fit: "Oversized, intentionally relaxed volume. Model is 6'1\" (185cm) wearing size Medium.",
+    care: "Dry clean only. Professional pressing recommended."
+  },
+  {
+    id: "minimalist-silk-slip-dress",
+    name: "Minimalist Silk Slip Dress",
+    category: "women",
+    type: "Eveningwear",
+    material: "Mulberry Silk 22-Momme",
+    price: 410,
+    tag: "",
+    colors: [
+      { name: "Noir Black", hex: "#0a0a0a" },
+      { name: "Chalk White", hex: "#f2f0ec" }
+    ],
+    sizes: ["XS","S","M","L"],
+    oosSizes: ["L"],
+    seriesOf: 200,
+    edition: "EDITION N° 04",
+    images: [img("slip1",900,1125), img("slip1b",600,600), img("slip1c",600,600), img("slip1d",1400,875)],
+    description: "Cut on the bias from heavyweight mulberry silk, this slip dress falls with fluid, sculptural drape. Adjustable straps, cowl back.",
+    fit: "Fluid, body-skimming fit. Model is 5'10\" (178cm) wearing size Small.",
+    care: "Dry clean only."
+  },
+  {
+    id: "structured-leather-overshirt",
+    name: "Structured Leather Overshirt",
+    category: "men",
+    type: "Archival Leather",
+    material: "Matte Lambskin",
+    price: 820,
+    tag: "LIMITED",
+    colors: [
+      { name: "Noir Black", hex: "#0a0a0a" }
+    ],
+    sizes: ["S","M","L"],
+    oosSizes: ["S"],
+    seriesOf: 90,
+    edition: "EDITION N° 04",
+    images: [img("leather1",900,1125), img("leather1b",600,600), img("leather1c",600,600), img("leather1d",1400,875)],
+    description: "A boxy overshirt in matte lambskin leather with a structured collar and patch pockets. Layers between knitwear and outerwear.",
+    fit: "Boxy, relaxed fit. Model is 6'1\" (185cm) wearing size Medium.",
+    care: "Leather specialist clean only."
+  },
+  {
+    id: "oversized-sculptural-wool-overcoat",
+    name: "Oversized Sculptural Wool Overcoat",
+    category: "women",
+    type: "Outerwear & Coats",
+    material: "100% Virgin Wool",
+    price: 780,
+    tag: "EDITION N° 04 / EXCLUSIVE",
+    colors: [
+      { name: "Noir Black", hex: "#0a0a0a" },
+      { name: "Chalk White", hex: "#f2f0ec" },
+      { name: "Graphite", hex: "#3a3a3a" }
+    ],
+    sizes: ["XS","S","M","L","XL"],
+    oosSizes: ["XL"],
+    seriesOf: 120,
+    edition: "EDITION N° 04",
+    images: [img("sculpt1",900,1125), img("sculpt1b",600,600), img("sculpt1c",600,600), img("sculpt1d",1400,875)],
+    description: "An oversized coat built on a sculptural pattern, with a dropped shoulder and buffalo horn closures. A study in silhouette over ornament — 100% virgin wool, fully lined.",
+    fit: "Intentionally relaxed volume. Model is 6'1\" (185cm) wearing size Medium.",
+    care: "Dry clean only. Store on a broad-shouldered hanger."
+  },
+  {
+    id: "sculptural-heavy-knit-cardigan",
+    name: "Sculptural Heavy Knit Cardigan",
+    category: "women",
+    type: "Minimalist Knitwear",
+    material: "Heavy 3-Gauge Merino Cashmere Cloth",
+    price: 420,
+    tag: "ATELIER",
+    colors: [
+      { name: "Chalk White", hex: "#f2f0ec" }
+    ],
+    sizes: ["S","M","L"],
+    oosSizes: [],
+    seriesOf: 80,
+    edition: "ATELIER",
+    images: [img("cardigan1",900,1125), img("cardigan1b",600,600), img("cardigan1c",600,600), img("cardigan1d",1400,875)],
+    description: "A heavyweight 3-gauge cardigan in undyed merino-cashmere cloth, cocooning the frame. Chunky rib trims, oversized horn buttons.",
+    fit: "Oversized fit. Model is 5'10\" (178cm) wearing size Small.",
+    care: "Hand wash cold. Dry flat."
+  },
+  {
+    id: "sculptural-square-toe-boot",
+    name: "Sculptural Square-Toe Boot",
+    category: "accessories",
+    type: "Footwear",
+    material: "Obsidian Calfskin",
+    price: 690,
+    tag: "",
+    colors: [
+      { name: "Noir Black", hex: "#0a0a0a" }
+    ],
+    sizes: ["36","37","38","39","40","41"],
+    oosSizes: [],
+    seriesOf: 250,
+    edition: "PERMANENT WARDROBE",
+    images: [img("boot1",900,1125), img("boot1b",600,600), img("boot1c",600,600), img("boot1d",1400,875)],
+    description: "A square, sculptural toe on a stacked block heel. Built in obsidian calfskin with an internal side zip.",
+    fit: "Fits true to size.",
+    care: "Wipe clean. Use a shoe tree to preserve shape."
+  },
+  {
+    id: "cantilevered-architectural-gloves",
+    name: "Cantilevered Architectural Gloves",
+    category: "accessories",
+    type: "Accessories",
+    material: "Noir Lambskin",
+    price: 195,
+    tag: "",
+    colors: [
+      { name: "Noir Black", hex: "#0a0a0a" }
+    ],
+    sizes: ["S","M","L"],
+    oosSizes: [],
+    seriesOf: 160,
+    edition: "PERMANENT WARDROBE",
+    images: [img("gloves1",900,1125), img("gloves1b",600,600), img("gloves1c",600,600), img("gloves1d",1400,875)],
+    description: "Second-skin gloves in noir lambskin leather, cut with a sculptural cantilevered cuff.",
+    fit: "Fits true to size.",
+    care: "Leather specialist clean only."
+  },
+  {
+    id: "pleated-wideleg-trouser-graphite",
+    name: "Pleated Wide-Leg Trousers",
+    category: "men",
+    type: "Tailored Trousers",
+    material: "Graphite Wool",
+    price: 440,
+    tag: "",
+    colors: [
+      { name: "Graphite", hex: "#3a3a3a" }
+    ],
+    sizes: ["S","M","L","XL"],
+    oosSizes: [],
+    seriesOf: 140,
+    edition: "EDITION N° 04",
+    images: [img("trouser2",900,1125), img("trouser2b",600,600), img("trouser2c",600,600), img("trouser2d",1400,875)],
+    description: "Deep pleats and a fluid, sculptural drape rendered in graphite wool. Cut wide through the leg, finished with a hidden hook closure.",
+    fit: "True to size, high-rise fit.",
+    care: "Dry clean only. Steam to release pleats."
+  },
+  {
+    id: "raw-silk-hidden-placket-shirt",
+    name: "Raw Silk Hidden Placket Shirt",
+    category: "men",
+    type: "Shirting",
+    material: "Raw Silk",
+    price: 350,
+    tag: "",
+    colors: [
+      { name: "Chalk White", hex: "#f2f0ec" }
+    ],
+    sizes: ["S","M","L","XL"],
+    oosSizes: [],
+    seriesOf: 200,
+    edition: "PERMANENT WARDROBE",
+    images: [img("shirt2",900,1125), img("shirt2b",600,600), img("shirt2c",600,600), img("shirt2d",1400,875)],
+    description: "A raw silk shirt with a hidden button placket for an uninterrupted front. Structured collar, dropped hem.",
+    fit: "Relaxed fit through the body.",
+    care: "Dry clean only."
+  }
+];
+
+function getProduct(id){ return PRODUCTS.find(p => p.id === id); }
+function getProductsByIds(ids){ return ids.map(getProduct).filter(Boolean); }
+
+</script>
+<script>
+// =========================================================
+// BASTILLUXE — App (hash-router SPA, in-memory cart state)
+// =========================================================
+
+const state = {
+  cart: [],       // { productId, color, size, qty }
+  wishlist: [],   // productId[]
+};
+
+const fmt = (n) => `$${n.toLocaleString('en-US')}`;
+
+// ---------- CART LOGIC ----------
+function addToCart(productId, color, size, qty = 1){
+  const existing = state.cart.find(l => l.productId === productId && l.color === color && l.size === size);
+  if (existing){ existing.qty += qty; }
+  else { state.cart.push({ productId, color, size, qty }); }
+  renderCartBadge();
+}
+function removeFromCart(index){ state.cart.splice(index,1); renderCartBadge(); render(); }
+function setQty(index, qty){
+  if (qty < 1) return;
+  state.cart[index].qty = qty;
+  renderCartBadge(); render();
+}
+function cartCount(){ return state.cart.reduce((sum,l) => sum + l.qty, 0); }
+function cartSubtotal(){
+  return state.cart.reduce((sum,l) => {
+    const p = getProduct(l.productId);
+    return sum + (p ? p.price * l.qty : 0);
+  }, 0);
+}
+function renderCartBadge(){
+  document.getElementById('cartBadge').textContent = cartCount();
+  document.getElementById('wishBadge').textContent = state.wishlist.length;
+}
+
+function toggleWishlist(productId){
+  const i = state.wishlist.indexOf(productId);
+  if (i === -1){ state.wishlist.push(productId); showToast('SAVED TO ARCHIVE WISHLIST'); }
+  else { state.wishlist.splice(i,1); showToast('REMOVED FROM WISHLIST'); }
+  renderCartBadge();
+}
+
+// ---------- TOAST ----------
+let toastTimer;
+function showToast(msg){
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.classList.add('is-visible');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => el.classList.remove('is-visible'), 2200);
+}
+
+// ---------- ROUTER ----------
+function parseHash(){
+  const raw = location.hash.replace(/^#\/?/, '');
+  const [path, queryStr] = raw.split('?');
+  const params = new URLSearchParams(queryStr || '');
+  return { path: path || '', params };
+}
+
+function navigate(){
+  const { path, params } = parseHash();
+  window.scrollTo(0,0);
+  document.querySelectorAll('.nav__center a').forEach(a => a.classList.remove('is-current'));
+
+  if (path === '' ) { renderHome(); setActiveNav(''); }
+  else if (path === 'shop') { renderShop(params); setActiveNav(params.get('cat') || params.get('filter') || 'shop'); }
+  else if (path.startsWith('product/')) { renderPDP(path.split('/')[1]); }
+  else if (path === 'cart') { renderCart(); }
+  else if (path === 'lookbook') { renderLookbook(); setActiveNav('lookbook'); }
+  else { renderHome(); }
+}
+function setActiveNav(key){
+  const map = { men:0, women:0, new:1, lookbook:2, sale:3 };
+  // simple highlight: match by href fragment
+  document.querySelectorAll('.nav__center a').forEach(a => {
+    if (a.getAttribute('href').includes(key) && key) a.classList.add('is-current');
+  });
+}
+window.addEventListener('hashchange', navigate);
+
+// ---------- APP ROOT ----------
+const app = document.getElementById('app');
+function render(){ navigate(); }
+
+// =========================================================
+// HOME VIEW
+// =========================================================
+function renderHome(){
+  const featured = PRODUCTS.slice(0,4);
+  app.innerHTML = `
+    <section class="hero">
+      <img class="hero__media" src="${img('hero-main',1800,900)}" alt="Bastilluxe Autumn Winter 2025 campaign">
+      <div class="hero__content">
+        <div class="eyebrow hero__eyebrow">MAISON DE REGENERÉE TEXTILE</div>
+        <h1 class="display hero__title">MONOCHROME FORMS<br>AUTUMN–WINTER 2025</h1>
+        <p class="body-lg hero__sub">Precision tailoring in structured melton wool, raw mulberry silk, and heavyweight architectural cotton. Conceived as wearable sculpture.</p>
+        <div class="hero__ctas">
+          <a href="#/shop?cat=men" class="btn btn--primary" style="background:#fff;color:#0a0a0a;border-color:#fff;">DISCOVER MEN</a>
+          <a href="#/shop?cat=women" class="btn btn--outline">EXPLORE WOMEN</a>
+        </div>
+      </div>
+    </section>
+    <div class="wrap hero__meta">
+      <span class="label-sm">FABRIC SOURCING · Biella, Piedmont · 100% Virgin Wool</span>
+      <span class="label-sm hide-mobile">REGENERATION · Full Canvas Structural Padding</span>
+      <span class="label-sm">LOT NUMBER · Numbered Batch of 240 Units</span>
+    </div>
+
+    <section class="wrap section">
+      <div class="section__head">
+        <div>
+          <div class="eyebrow">TAXONOMY N° 01</div>
+          <h2 class="headline-md mt-xs">CURATED ARCHITECTURE</h2>
+        </div>
+        <p class="body-lg">Three foundational silhouettes meticulously proportioned to subvert traditional volumes.</p>
+      </div>
+      <div class="category-grid">
+        <a href="#/shop?cat=outerwear" class="category-card">
+          <img src="${img('cat-outerwear',700,900)}" alt="Outerwear and coats">
+          <div class="wrap category-card__label" style="padding-left:0;padding-right:0;">
+            <span class="label-md">OUTERWEAR &amp; COATS</span>
+            <span class="body-sm">CAT. 01</span>
+          </div>
+        </a>
+        <a href="#/shop?cat=trousers" class="category-card">
+          <img src="${img('cat-trousers',700,900)}" alt="Tailored trousers">
+          <div class="wrap category-card__label" style="padding-left:0;padding-right:0;">
+            <span class="label-md">TAILORED TROUSERS</span>
+            <span class="body-sm">CAT. 02</span>
+          </div>
+        </a>
+        <a href="#/shop?cat=knitwear" class="category-card">
+          <img src="${img('cat-knitwear',700,900)}" alt="Minimalist knitwear">
+          <div class="wrap category-card__label" style="padding-left:0;padding-right:0;">
+            <span class="label-md">MINIMALIST KNITWEAR</span>
+            <span class="body-sm">CAT. 03</span>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <section class="wrap section--tight">
+      <div class="section__head">
+        <div>
+          <div class="eyebrow">COLLECTION 25.1</div>
+          <h2 class="headline-md mt-xs">FEATURED SEASONAL DROP</h2>
+        </div>
+        <span class="body-sm">4 OF 24 ITEMS</span>
+      </div>
+      <div class="product-grid">
+        ${featured.map(productCardHTML).join('')}
+      </div>
+      <div class="center mt-xl">
+        <a href="#/shop" class="btn btn--outline">EXPLORE COMPLETE COLLECTION — 24 PIECES</a>
+      </div>
+    </section>
+
+    <section class="editorial">
+      <div class="editorial__media">
+        <img src="${img('editorial-main',1200,1300)}" alt="Portfolio Vol. IV editorial">
+        <span class="editorial__tag">PLATE 047 — THE CONCRETE MONOLITH</span>
+      </div>
+      <div class="editorial__body">
+        <div class="eyebrow" style="color:rgba(255,255,255,.6);">PORTFOLIO VOL. IV — FALL/WINTER 2025</div>
+        <p class="editorial__quote">"A study in form, shadow, and essential silhouette."</p>
+        <p class="body-lg" style="color:rgba(255,255,255,.75);">Stripped of chromatic distractions, the garments articulate themselves entirely through silhouette, weave density, and tactile friction. Recorded on location in the Vals-d'Oise Brutalist sanctuaries by photographer Henrik Nygren.</p>
+        <div class="editorial__meta">
+          <div>ART DIRECTION<strong>M. Vasseur</strong></div>
+          <div>PAGINATION<strong>148 Pages, Hardbound Edition</strong></div>
+        </div>
+        <a href="#/lookbook" class="editorial__link">EXPLORE THE LOOKBOOK →</a>
+      </div>
+    </section>
+
+    <section class="props">
+      <div>
+        <span class="num">01</span>
+        <div class="label-md mt-xs">ZERO POLYESTERS</div>
+        <p class="body-sm mt-sm">Every structural weave is composed entirely of compostable natural fiber — wool, flax, or natural silk filaments.</p>
+      </div>
+      <div>
+        <span class="num">02</span>
+        <div class="label-md mt-xs">SCULPTURAL FIT</div>
+        <p class="body-sm mt-sm">Patterns drafted with micro-calibrated ease, disproportionate volume, and floating structure designed to drape without constriction.</p>
+      </div>
+      <div>
+        <span class="num">03</span>
+        <div class="label-md mt-xs">SECURE DISPATCH</div>
+        <p class="body-sm mt-sm">Delivered in archive-weight garment bags with uninterrupted cold-chain custody from mill to your door.</p>
+      </div>
+    </section>
+
+    <section class="wrap" style="padding:var(--space-3xl) var(--margin-mobile);">
+      <div class="newsletter-band">
+        <div class="newsletter-band__grid">
+          <div>
+            <div class="eyebrow">PRIVATE ARCHIVE ACCESS</div>
+            <h2 class="headline-md mt-sm">RECEIVE INVITATIONS TO PRIVATE ARCHIVE SALES &amp; SEASONAL RELEASES</h2>
+          </div>
+          <div>
+            <form class="newsletter-band__form" id="homeNewsletterForm">
+              <input type="email" class="field" placeholder="YOUR EMAIL ADDRESS" required>
+              <button type="submit" class="btn btn--primary">SUBSCRIBE</button>
+            </form>
+            <p class="body-sm mt-sm">Strict privacy enforced. Maximum 2 dispatches per month. Unsubscribe anytime.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  `;
+  bindProductCardEvents();
+  const f = document.getElementById('homeNewsletterForm');
+  if (f) f.addEventListener('submit', e => { e.preventDefault(); showToast('SUBSCRIBED TO DISPATCH'); f.reset(); });
+}
+
+// =========================================================
+// PRODUCT CARD (shared)
+// =========================================================
+function productCardHTML(p){
+  return `
+    <div class="product-card" data-product-card="${p.id}">
+      <div class="product-card__media">
+        <img src="${p.images[0]}" alt="${p.name}">
+        <img class="img--alt" src="${p.images[1]}" alt="">
+        ${p.tag ? `<span class="product-card__tag">${p.tag}</span>` : ''}
+      </div>
+      <div class="product-card__info">
+        <div class="product-card__row">
+          <span class="product-card__name">${p.name}</span>
+          <span class="product-card__price">${fmt(p.price)}</span>
+        </div>
+        <div class="body-sm product-card__material">${p.material}</div>
+        <div class="swatch-row">
+          ${p.colors.map(c => `<span class="swatch" style="background:${c.hex}"></span>`).join('')}
+        </div>
+      </div>
+    </div>
+  `;
+}
+function bindProductCardEvents(){
+  document.querySelectorAll('[data-product-card]').forEach(el => {
+    el.addEventListener('click', () => { location.hash = `#/product/${el.dataset.productCard}`; });
+  });
+}
+
+// =========================================================
+// SHOP / PLP VIEW
+// =========================================================
+function renderShop(params){
+  let list = [...PRODUCTS];
+  const cat = params.get('cat');
+  const filter = params.get('filter');
+  const activeChips = [];
+
+  if (cat){
+    if (cat === 'men' || cat === 'women' || cat === 'accessories'){
+      list = list.filter(p => p.category === cat);
+      activeChips.push(cat.toUpperCase());
+    } else if (cat === 'outerwear'){
+      list = list.filter(p => p.type.includes('Outerwear'));
+      activeChips.push('OUTERWEAR & COATS');
+    } else if (cat === 'trousers'){
+      list = list.filter(p => p.type.includes('Trouser'));
+      activeChips.push('TAILORED TROUSERS');
+    } else if (cat === 'knitwear'){
+      list = list.filter(p => p.type.includes('Knitwear'));
+      activeChips.push('MINIMALIST KNITWEAR');
+    } else if (cat === 'leather'){
+      list = list.filter(p => p.type.includes('Leather'));
+      activeChips.push('ARCHIVAL LEATHER');
+    }
+  }
+  if (filter === 'new'){ activeChips.push('NEW ARRIVALS'); }
+  if (filter === 'sale'){ list = []; activeChips.push('SALE'); }
+
+  app.innerHTML = `
+    <div class="wrap plp-head">
+      <div class="breadcrumb"><a href="#/">HOME</a> / <a href="#/shop">COLLECTIONS</a> / AUTUMN–WINTER EDITIONS</div>
+      <div class="plp-head__row mt-md">
+        <h1 class="display" style="font-size:56px;line-height:1;">COLLECTION N° 04 <span class="plp-head__count">(${list.length} pieces)</span></h1>
+      </div>
+      <p class="body-lg mt-sm" style="max-width:520px;">Monochrome architectural silhouettes engineered for longevity and effortless proportion. Form follows restraint.</p>
+    </div>
+
+    <div class="wrap">
+      <div class="filter-bar">
+        <div class="filter-bar__left">
+          <select class="field filter-select"><option>CATEGORY: ALL</option><option>MEN</option><option>WOMEN</option><option>ACCESSORIES</option></select>
+          <select class="field filter-select"><option>SIZE: ALL</option><option>XS</option><option>S</option><option>M</option><option>L</option><option>XL</option></select>
+          <select class="field filter-select"><option>COLOR: MONOCHROMES</option><option>NOIR BLACK</option><option>CHALK WHITE</option><option>GRAPHITE</option></select>
+          <select class="field filter-select"><option>MATERIAL: WOOL, CASHMERE</option><option>SILK</option><option>COTTON</option><option>LEATHER</option></select>
+          <button class="btn--ghost label-sm" id="resetFilters">✕ RESET</button>
+        </div>
+        <div class="filter-bar__right">
+          <span class="label-sm">SORT:</span>
+          <select class="field filter-select"><option>FEATURED</option><option>PRICE: LOW TO HIGH</option><option>PRICE: HIGH TO LOW</option><option>NEWEST</option></select>
+          <div class="view-toggle">
+            <button data-cols="2">▤</button>
+            <button class="is-active" data-cols="4">▦</button>
+          </div>
+        </div>
+      </div>
+      <div class="active-filters">
+        <span class="label-sm">ACTIVE:</span>
+        <span class="chip">EDITION N° 04 ✕</span>
+        ${activeChips.map(c => `<span class="chip">${c} ✕</span>`).join('')}
+      </div>
+
+      ${list.length ? `<div class="product-grid" id="plpGrid">${list.map(productCardHTML).join('')}</div>` :
+        `<div class="cart-empty"><p class="headline-sm">No pieces currently marked down.</p><p class="body-lg">Bastilluxe maintains full-price integrity across all editions.</p><a href="#/shop" class="btn btn--primary">VIEW FULL COLLECTION</a></div>`
+      }
+
+      ${list.length ? `
+      <div class="load-more">
+        <div class="progress-label"><span>SHOWING ${list.length} OF ${list.length} ITEMS</span><span>100%</span></div>
+        <div class="progress-track"><div class="progress-fill" style="width:100%;"></div></div>
+        <p class="body-sm mt-sm">Complimentary door-to-door courier service and bastilluxe fittings offered on all seasonal edition acquisitions.</p>
+      </div>` : ''}
+    </div>
+  `;
+  bindProductCardEvents();
+  document.getElementById('resetFilters').addEventListener('click', () => { location.hash = '#/shop'; });
+}
+
+// =========================================================
+// PDP VIEW
+// =========================================================
+function renderPDP(id){
+  const p = getProduct(id);
+  if (!p){ app.innerHTML = `<div class="wrap section center"><p class="headline-md">Piece not found.</p><a href="#/shop" class="btn btn--primary mt-lg">BACK TO COLLECTION</a></div>`; return; }
+
+  let selectedColor = p.colors[0].name;
+  let selectedSize = null;
+
+  const complementIds = PRODUCTS.filter(x => x.id !== p.id).slice(0,3).map(x => x.id);
+  const complements = getProductsByIds(complementIds);
+
+  app.innerHTML = `
+    <div class="wrap">
+      <div style="padding-top:var(--space-lg);" class="breadcrumb"><a href="#/">HOME</a> / <a href="#/shop">${p.category.toUpperCase()}</a> / ${p.name.toUpperCase()}</div>
+      <div class="pdp">
+        <div class="pdp__gallery">
+          <div>
+            <img class="plate-main" src="${p.images[0]}" alt="${p.name} — front">
+            <div class="pdp__plate-caption">PLATE 01 / FRONTAL MASS</div>
+          </div>
+          <div class="plate-pair">
+            <div><img src="${p.images[1]}" alt="${p.name} — profile"><div class="pdp__plate-caption">PLATE 02 — PROFILE / DROP SHOULDER</div></div>
+            <div><img src="${p.images[2]}" alt="${p.name} — detail"><div class="pdp__plate-caption">PLATE 03 — CLOSURE DETAIL</div></div>
+          </div>
+          <div>
+            <img class="plate-full" src="${p.images[3]}" alt="${p.name} — worn, full length">
+            <div class="pdp__plate-caption">PLATE 04 — KINETIC SILHOUETTE</div>
+          </div>
+        </div>
+
+        <div class="pdp__info">
+          <div class="pdp__series">
+            <span class="label-sm" style="color:var(--outline);">${p.edition}</span>
+            <span class="label-sm" style="color:var(--outline);">SERIES OF ${p.seriesOf}</span>
+          </div>
+          <h1 class="headline-lg pdp__title">${p.name.toUpperCase()}</h1>
+          <div class="pdp__price">${fmt(p.price)} USD <span class="taxes">TAXES INCLUDED</span></div>
+          <div class="pdp__installment">
+            <span>Or 4 interest-free installments of ${fmt(Math.round(p.price/4))} with Klarna.</span>
+          </div>
+
+          <div class="option-block">
+            <div class="option-block__head"><span class="label-md">COLOR: <span id="colorLabel">${selectedColor}</span></span></div>
+            <div class="color-row" id="colorRow">
+              ${p.colors.map((c,i) => `<span class="color-swatch ${i===0?'is-selected':''}" data-color="${c.name}" style="background:${c.hex}" title="${c.name}"></span>`).join('')}
+            </div>
+          </div>
+
+          <div class="option-block">
+            <div class="option-block__head">
+              <span class="label-md">SELECT SIZE</span>
+              <button class="btn--ghost label-sm">SIZE &amp; MEASUREMENT GUIDE</button>
+            </div>
+            <div class="size-grid" id="sizeGrid">
+              ${p.sizes.map(s => `<div class="size-box ${p.oosSizes.includes(s) ? 'is-oos':''}" data-size="${s}">${s}</div>`).join('')}
+            </div>
+            <p class="model-note">Model is 6'1" (185cm) wearing Size Medium. Intentionally relaxed volume.</p>
+          </div>
+
+          <div class="pdp__actions">
+            <button class="btn btn--primary btn--full" id="addToBagBtn">SELECT A SIZE</button>
+            <button class="btn btn--outline btn--full" id="wishBtn">${state.wishlist.includes(p.id) ? '♥ SAVED TO ARCHIVE WISHLIST' : '♡ SAVE TO ARCHIVE WISHLIST'}</button>
+          </div>
+
+          <div class="pdp__perks">
+            <div><strong>COMPLIMENTARY</strong>Express Global Delivery</div>
+            <div><strong>14-DAY RETURNS</strong>Concierge Pick-Up</div>
+            <div><strong>CARBON ZERO</strong>Climate Neutral Parcel</div>
+          </div>
+
+          <div class="accordion">
+            <div class="accordion__item">
+              <button class="accordion__head" data-acc="0"><span>01 / FABRIC &amp; CRAFTSMANSHIP</span><span class="accordion__chevron">+</span></button>
+              <div class="accordion__body"><p>${p.description}</p></div>
+            </div>
+            <div class="accordion__item">
+              <button class="accordion__head" data-acc="1"><span>02 / FIT &amp; SCULPTURAL DIMENSIONS</span><span class="accordion__chevron">+</span></button>
+              <div class="accordion__body"><p>${p.fit}</p></div>
+            </div>
+            <div class="accordion__item">
+              <button class="accordion__head" data-acc="2"><span>03 / CARE &amp; ARCHIVAL STORAGE</span><span class="accordion__chevron">+</span></button>
+              <div class="accordion__body"><p>${p.care}</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="ctl">
+      <div class="wrap">
+        <div class="ctl__head">
+          <div>
+            <div class="eyebrow">CURATED ENSEMBLE</div>
+            <h2 class="headline-md mt-xs">COMPLETE THE LOOK</h2>
+            <p class="body-lg mt-xs">Architectural garments calibrated by our creative director to harmonize in silhouette, texture, and monochrome balance.</p>
+          </div>
+          <div style="text-align:right;">
+            <div class="body-sm">ENSEMBLE TOTAL</div>
+            <div class="headline-sm" id="ensembleTotal">${fmt(p.price + complements.reduce((s,c)=>s+c.price,0))} USD</div>
+            <button class="btn btn--primary mt-sm" id="addEnsembleBtn">+ ADD COMPLETE LOOK</button>
+          </div>
+        </div>
+        <div class="ctl__grid">
+          <div class="ctl-card">
+            <div class="ctl-card__media"><img src="${p.images[0]}" alt="${p.name}"></div>
+            <div class="ctl-card__body">
+              <div class="label-sm ctl-card__tag">BASE PIECE</div>
+              <div class="product-card__row"><span class="product-card__name">${p.name.toUpperCase()}</span><span class="product-card__price">${fmt(p.price)} USD</span></div>
+            </div>
+          </div>
+          ${complements.map(c => `
+            <div class="ctl-card" data-ctl-card="${c.id}">
+              <div class="ctl-card__media">
+                <img src="${c.images[0]}" alt="${c.name}">
+                <span class="ctl-card__add" data-ctl-add="${c.id}">+</span>
+              </div>
+              <div class="ctl-card__body">
+                <div class="label-sm ctl-card__tag">${c.type.toUpperCase()}</div>
+                <div class="product-card__row"><span class="product-card__name">${c.name.toUpperCase()}</span><span class="product-card__price">${fmt(c.price)} USD</span></div>
+                <button class="btn--ghost label-sm mt-xs" data-ctl-view="${c.id}">VIEW PIECE</button>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    </section>
+  `;
+
+  // ---- interactivity ----
+  document.querySelectorAll('[data-color]').forEach(sw => {
+    sw.addEventListener('click', () => {
+      document.querySelectorAll('[data-color]').forEach(x => x.classList.remove('is-selected'));
+      sw.classList.add('is-selected');
+      selectedColor = sw.dataset.color;
+      document.getElementById('colorLabel').textContent = selectedColor;
+    });
+  });
+  document.querySelectorAll('#sizeGrid .size-box').forEach(box => {
+    if (box.classList.contains('is-oos')) return;
+    box.addEventListener('click', () => {
+      document.querySelectorAll('#sizeGrid .size-box').forEach(x => x.classList.remove('is-selected'));
+      box.classList.add('is-selected');
+      selectedSize = box.dataset.size;
+      const btn = document.getElementById('addToBagBtn');
+      btn.textContent = `ADD TO BAG — ${fmt(p.price)} USD →`;
+      btn.disabled = false;
+    });
+  });
+  const addBtn = document.getElementById('addToBagBtn');
+  addBtn.disabled = true;
+  addBtn.addEventListener('click', () => {
+    if (!selectedSize) return;
+    addToCart(p.id, selectedColor, selectedSize, 1);
+    showToast(`ADDED TO BAG — ${p.name.toUpperCase()}`);
+  });
+  document.getElementById('wishBtn').addEventListener('click', (e) => {
+    toggleWishlist(p.id);
+    e.target.textContent = state.wishlist.includes(p.id) ? '♥ SAVED TO ARCHIVE WISHLIST' : '♡ SAVE TO ARCHIVE WISHLIST';
+  });
+  document.querySelectorAll('.accordion__head').forEach(head => {
+    head.addEventListener('click', () => head.closest('.accordion__item').classList.toggle('is-open'));
+  });
+  document.querySelectorAll('[data-ctl-add]').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const cid = btn.dataset.ctlAdd;
+      const cp = getProduct(cid);
+      const defaultSize = cp.sizes.find(s => !cp.oosSizes.includes(s));
+      addToCart(cid, cp.colors[0].name, defaultSize, 1);
+      btn.classList.add('is-added'); btn.textContent = '✓';
+      showToast(`ADDED TO BAG — ${cp.name.toUpperCase()}`);
+    });
+  });
+  document.querySelectorAll('[data-ctl-view]').forEach(btn => {
+    btn.addEventListener('click', () => { location.hash = `#/product/${btn.dataset.ctlView}`; });
+  });
+  const ensembleBtn = document.getElementById('addEnsembleBtn');
+  if (ensembleBtn){
+    ensembleBtn.addEventListener('click', () => {
+      const defSize = p.sizes.find(s => !p.oosSizes.includes(s));
+      addToCart(p.id, p.colors[0].name, defSize, 1);
+      complements.forEach(c => {
+        const defaultSize = c.sizes.find(s => !c.oosSizes.includes(s));
+        addToCart(c.id, c.colors[0].name, defaultSize, 1);
+      });
+      showToast('COMPLETE LOOK ADDED TO BAG');
+    });
+  }
+}
+
+// =========================================================
+// CART VIEW
+// =========================================================
+function renderCart(){
+  const lines = state.cart;
+  const subtotal = cartSubtotal();
+  const duties = lines.length ? Math.round(subtotal * 0.085) : 0;
+  const total = subtotal + duties;
+  const pieceCount = cartCount();
+  const nextTierGap = Math.max(0, 2500 - subtotal);
+
+  if (!lines.length){
+    app.innerHTML = `
+      <div class="wrap">
+        <div class="cart-empty">
+          <div class="eyebrow">PORTFOLIO INDEX / SHOPPING BAG (0)</div>
+          <h1 class="headline-lg mt-md">YOUR CART MANIFEST IS EMPTY</h1>
+          <p class="body-lg">Pieces you select for acquisition will be archived here.</p>
+          <a href="#/shop" class="btn btn--primary">EXPLORE COLLECTION N° 04</a>
+        </div>
+      </div>`;
+    return;
+  }
+
+  app.innerHTML = `
+    <div class="wrap">
+      <div class="cart__head" style="padding-top:var(--space-lg);">
+        <div>
+          <div class="eyebrow">PORTFOLIO INDEX / SHOPPING BAG (${pieceCount})</div>
+          <h1 class="headline-lg mt-xs">CART MANIFEST</h1>
+        </div>
+        <button class="btn--ghost label-sm">⤓ SLIDE-OVER DRAWER PREVIEW</button>
+      </div>
+
+      <div class="cart">
+        <div>
+          <div class="milestone">
+            <span>DISPATCH MILESTONE</span>
+            <span>${nextTierGap > 0 ? `${fmt(nextTierGap)} away from complimentary courier upgrade` : 'Complimentary white-glove courier unlocked'}</span>
+          </div>
+
+          ${lines.map((l, i) => {
+            const p = getProduct(l.productId);
+            return `
+            <div class="cart-line">
+              <img src="${p.images[0]}" alt="${p.name}">
+              <div class="cart-line__meta">
+                <span class="label-sm" style="color:var(--outline);">${p.edition}</span>
+                <span class="label-md">${p.name.toUpperCase()}</span>
+                <span class="body-sm cart-line__attrs">Color: ${l.color} &nbsp;/&nbsp; Size: ${l.size} &nbsp;/&nbsp; Fabric: ${p.material}</span>
+                <div class="cart-line__actions">
+                  <div class="qty-stepper">
+                    <button data-qty-down="${i}">−</button>
+                    <span>${l.qty}</span>
+                    <button data-qty-up="${i}">+</button>
+                  </div>
+                  <div class="cart-line__linkrow">
+                    <button data-save="${i}">♡ SAVE</button>
+                    <button data-remove="${i}">✕ REMOVE</button>
+                  </div>
+                </div>
+              </div>
+              <div class="cart-line__price">${fmt(p.price * l.qty)}</div>
+            </div>
+          `; }).join('')}
+
+          <div class="gift-row">
+            <div>
+              <div class="label-md">COMPLIMENTARY BASTILLUXE PRESENTATION</div>
+              <p class="body-sm">Archival matte black box, silk ribbon, and custom calligraphed card.</p>
+            </div>
+            <div class="switch" id="giftSwitch"></div>
+          </div>
+
+          <div class="complements">
+            <div class="eyebrow">CURATED THINGENS</div>
+            <h3 class="headline-sm mt-xs">ARCHIVAL COMPLEMENTS</h3>
+            <div class="complements-grid mt-md">
+              ${PRODUCTS.filter(p => p.category === 'accessories').slice(0,3).map(p => `
+                <div class="product-card" data-product-card="${p.id}">
+                  <div class="product-card__media"><img src="${p.images[0]}" alt="${p.name}"></div>
+                  <div class="product-card__info">
+                    <div class="label-sm" style="color:var(--outline);">${p.type.toUpperCase()}</div>
+                    <div class="product-card__row mt-xs"><span class="product-card__name">${p.name.toUpperCase()}</span></div>
+                    <div class="product-card__price mt-xs">${fmt(p.price)}</div>
+                  </div>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        </div>
+
+        <div class="summary">
+          <div class="eyebrow">ORDER SUMMARY</div>
+          <div class="summary__row"><span>${pieceCount} Pieces</span><span></span></div>
+          <div class="summary__row"><span>Bag Subtotal</span><span>${fmt(subtotal)}</span></div>
+          <div class="summary__row"><span>Standard Courier</span><span>Complimentary</span></div>
+          <div class="summary__row"><span>Estimated Duties &amp; Taxes</span><span>${fmt(duties)}</span></div>
+          <div class="summary__row summary__row--total"><span>TOTAL<br><small>USD INCLUSIVE</small></span><span>${fmt(total)}</span></div>
+
+          <div class="promo-row">
+            <input class="field" placeholder="PROMO / ARCHIVE CODE">
+            <button class="btn btn--outline">APPLY</button>
+          </div>
+
+          <button class="btn btn--primary btn--full" id="checkoutBtn">PROCEED TO CHECKOUT →</button>
+
+          <div class="center body-sm mt-md">INSTANT EXPRESS SETTLEMENT</div>
+          <div class="express-row">
+            <button>PAY</button><button>GPAY</button><button>SHOPPAY</button>
+          </div>
+
+          <div class="trust-list">
+            <div>🔒 <span>256-bit encrypted checkout. Registered BASTILLUXE Serial &amp; Digital Certificate.</span></div>
+            <div>↺ <span>30-day global returns. 100% carbon neutral.</span></div>
+            <div>◆ <span>Concierge client support — 24/7 dedicated wardrobe advisory.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+
+  document.querySelectorAll('[data-qty-up]').forEach(b => b.addEventListener('click', () => setQty(+b.dataset.qtyUp, lines[+b.dataset.qtyUp].qty + 1)));
+  document.querySelectorAll('[data-qty-down]').forEach(b => b.addEventListener('click', () => setQty(+b.dataset.qtyDown, lines[+b.dataset.qtyDown].qty - 1)));
+  document.querySelectorAll('[data-remove]').forEach(b => b.addEventListener('click', () => { removeFromCart(+b.dataset.remove); showToast('REMOVED FROM BAG'); }));
+  document.querySelectorAll('[data-save]').forEach(b => b.addEventListener('click', () => showToast('MOVED TO SAVED ITEMS')));
+  const giftSwitch = document.getElementById('giftSwitch');
+  if (giftSwitch) giftSwitch.addEventListener('click', () => giftSwitch.classList.toggle('is-on'));
+  const checkoutBtn = document.getElementById('checkoutBtn');
+  if (checkoutBtn) checkoutBtn.addEventListener('click', () => showToast('CHECKOUT IS A DEMO IN THIS PREVIEW'));
+  bindProductCardEvents();
+}
+
+// =========================================================
+// LOOKBOOK VIEW (lightweight)
+// =========================================================
+function renderLookbook(){
+  app.innerHTML = `
+    <div class="wrap section--tight">
+      <div class="eyebrow">PORTFOLIO VOL. IV</div>
+      <h1 class="headline-lg mt-sm">FALL / WINTER 2025 LOOKBOOK</h1>
+      <p class="body-lg mt-sm" style="max-width:520px;">148 pages, recorded on location in the Vals-d'Oise Brutalist sanctuaries.</p>
+      <div class="lookbook-grid mt-xl">
+        ${[0,1,2,3,4,5].map(i => `<img src="${img('lookbook'+i, 900, 1100)}" alt="Lookbook plate ${i+1}">`).join('')}
+      </div>
+    </div>
+  `;
+}
+
+// ---------- NAV EVENTS ----------
+document.getElementById('searchToggle').addEventListener('click', () => {
+  document.getElementById('searchOverlay').classList.add('is-open');
+  document.getElementById('searchInput').focus();
+});
+document.getElementById('searchClose').addEventListener('click', () => {
+  document.getElementById('searchOverlay').classList.remove('is-open');
+});
+document.getElementById('searchInput').addEventListener('input', (e) => {
+  const q = e.target.value.trim().toLowerCase();
+  const results = document.getElementById('searchResults');
+  if (!q){ results.innerHTML = ''; return; }
+  const matches = PRODUCTS.filter(p => p.name.toLowerCase().includes(q) || p.material.toLowerCase().includes(q) || p.type.toLowerCase().includes(q));
+  results.innerHTML = matches.length ? matches.map(p => `
+    <div class="search-result-row" data-search-result="${p.id}">
+      <img src="${p.images[0]}" alt="${p.name}">
+      <div>
+        <div class="label-md">${p.name.toUpperCase()}</div>
+        <div class="body-sm">${p.material} — ${fmt(p.price)}</div>
+      </div>
+    </div>
+  `).join('') : `<div class="search-empty body-lg">No pieces found in the archive for “${q}”.</div>`;
+  document.querySelectorAll('[data-search-result]').forEach(el => {
+    el.addEventListener('click', () => {
+      document.getElementById('searchOverlay').classList.remove('is-open');
+      location.hash = `#/product/${el.dataset.searchResult}`;
+    });
+  });
+});
+document.querySelector('[data-nav-cart]').addEventListener('click', () => { location.hash = '#/cart'; });
+document.getElementById('newsletterForm').addEventListener('submit', (e) => {
+  e.preventDefault(); showToast('SUBSCRIBED TO DISPATCH'); e.target.reset();
+});
+
+// ---------- INIT ----------
+renderCartBadge();
+navigate();
+
+</script>
+</body>
+</html>
